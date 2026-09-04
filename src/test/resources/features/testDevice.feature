@@ -1,5 +1,6 @@
 Feature: Validar dispositivo Android
 
+  @test
   Scenario: Test
-    Then ingresar a la pagina One Click
-    And pausa 200 segundos
+    Given ingresar a la pagina One Click
+    Then debo visualizar los elementos de la pagina "inicio"

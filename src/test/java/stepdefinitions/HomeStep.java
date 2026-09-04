@@ -1,6 +1,7 @@
 package stepdefinitions;
 
 import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
 import pages.HomePage;
 
 public class HomeStep {
@@ -14,5 +15,9 @@ public class HomeStep {
         homePage.abrirPagina();
     }
 
+    @Then("debo visualizar los elementos de la pagina {string}")
+    public void validateElements(String page){
+        homePage.validateHomePage(page);
+    }
 
 }

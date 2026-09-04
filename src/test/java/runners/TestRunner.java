@@ -11,6 +11,7 @@ import org.junit.runner.RunWith;
                 "stepdefinitions",
                 "hooks"
         },
+        tags = "@test",
         plugin = {
                 "pretty",
                 "html:target/cucumber-reports/cucumber.html",
