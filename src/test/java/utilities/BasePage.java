@@ -105,7 +105,7 @@ public abstract class BasePage {
     public String tapElementBase(By locator) {
         if (locator != null) {
             waitUntilVisible(locator, 180);
-            getDriver().findElement(locator).click();
+            find(locator).click();
             //find(locator).click();
         } else {
             return "Elemento no reconocido para dar click: " + locator;

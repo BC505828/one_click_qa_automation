@@ -1,5 +1,6 @@
 package stepdefinitions;
 
+import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import pages.HomePage;
@@ -20,4 +21,8 @@ public class HomeStep {
         homePage.validateHomePage(page);
     }
 
+    @And("dar click en elemento {string} pagina inicio")
+    public void clickHomePage(String element) {
+        homePage.clickElementsHomePage(element);
+    }
 }
