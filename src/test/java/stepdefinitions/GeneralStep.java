@@ -21,7 +21,7 @@ public class GeneralStep extends BasePage {
         scrollUp(alto);
     }
 
-    @And("Ocultar teclado")
+    @And("ocultar teclado")
     public void hideKey() throws InterruptedException {
         getDriver().hideKeyboard();
         Thread.sleep(1000);

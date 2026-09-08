@@ -1,12 +1,19 @@
 package stepdefinitions;
 
+import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
+
 import pages.ConfirmDetailsPage;
 
 public class ConfirmDetailsStep {
 
     private ConfirmDetailsPage confirmDetails;
+
+    @Before
+    public void inicializar() {
+        confirmDetails = new ConfirmDetailsPage();
+    }
 
     @Given("doy clic en el elemento {string} pagina ingresar informacion")
     public void clickElementoIngresarInformacion(String element) {
