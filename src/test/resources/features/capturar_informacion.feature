@@ -4,6 +4,7 @@ Feature: Paso 1 - Ingresar informacion
     Given doy clic en el elemento "curp" pagina ingresar informacion
     When ingreso "<curp>" en el campo "CURP" de la pagina ingresar informacion
     And doy clic en el elemento "aviso de privacidad" pagina ingresar informacion
+    And doy clic en el elemento "continuar" pagina ingresar informacion
     Examples:
       | curp               |
       | ASPK000100HDFHVG01 |

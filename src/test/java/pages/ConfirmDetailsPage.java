@@ -18,12 +18,14 @@ public class ConfirmDetailsPage extends BasePage {
 
     private final By inputCurp = By.id("curp");
     private final By btnavisoPrivacidad = By.id("avisoPrivacidad");
+    private final By btnContinuar = By.cssSelector(".MuiButton-root");
 
 
     public void clickElementsConfirmPage(String element) {
         Map<String, By> elementMap = new HashMap<>();
         elementMap.put("solicitalo aqui", inputCurp);
         elementMap.put("aviso de privacidad", btnavisoPrivacidad);
+        elementMap.put("continuar", btnContinuar);
 
         By locator = elementMap.get(element);
         tapElementBase(locator);
