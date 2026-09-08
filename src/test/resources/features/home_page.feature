@@ -7,7 +7,3 @@ Feature: Navegacion en pagina One Click
     And pausa 10 segundos
     And dar click en elemento "solicitalo aqui" pagina inicio
     And pausa 10 segundos
-
-
-
-
