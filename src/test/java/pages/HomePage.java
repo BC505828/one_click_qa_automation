@@ -37,7 +37,7 @@ public class HomePage extends BasePage {
         }
     }
 
-    public void clickElementsHomePage(String element){
+    public void clickElementsHomePage(String element) {
         Map<String, By> elementMap = new HashMap<>();
         elementMap.put("solicitalo aqui", btnSolicitaA);
 
@@ -45,7 +45,7 @@ public class HomePage extends BasePage {
         tapElementBase(locator);
     }
 
-    public void abrirPagina(){
+    public void abrirPagina() {
         driver.get(ConfigReader.get("url"));
     }
 }
