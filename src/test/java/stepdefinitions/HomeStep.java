@@ -22,7 +22,7 @@ public class HomeStep {
     }
 
     @And("dar click en elemento {string} pagina inicio")
-    public void clickHomePage(String element) {
+    public void clickHomePage(String element) throws InterruptedException {
         homePage.clickElementsHomePage(element);
     }
 }

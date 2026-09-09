@@ -8,10 +8,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.function.Executable;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Point;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Pause;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
@@ -20,11 +17,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.*;
+import java.util.NoSuchElementException;
 
 public abstract class BasePage {
     private final static int defalutTimeout = 5;
     //protected final SoftAssert softAssert;
     private final int timeout;
+
+    private static final int PAUSA_ENTRE_ACCIONES = 2000;
 
     private static final PointerInput finger =
             new PointerInput(PointerInput.Kind.TOUCH, "finger");
@@ -45,6 +45,10 @@ public abstract class BasePage {
     protected WebElement waitForDisplayed(By locator, int time) {
         final var wait = new WebDriverWait(getDriver(), Duration.ofSeconds(time));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+    }
+
+    public void pausaEjecucion() throws InterruptedException {
+        Thread.sleep(PAUSA_ENTRE_ACCIONES);
     }
 
     protected WebElement waitForDisplayed(By locator) {
@@ -102,15 +106,26 @@ public abstract class BasePage {
         }
     }
 
-    public String tapElementBase(By locator) {
-        if (locator != null) {
-            waitUntilVisible(locator, 180);
-            find(locator).click();
-            //find(locator).click();
-        } else {
-            return "Elemento no reconocido para dar click: " + locator;
+    public void waitUntilPresent(By locator, int timeoutSegundos) {
+        try {
+            new WebDriverWait(getDriver(), Duration.ofSeconds(timeoutSegundos))
+                    .until(ExpectedConditions.presenceOfElementLocated(locator));
+
+            Logs.info("Elemento encontrado: " + locator);
+
+        } catch (TimeoutException e) {
+            Logs.error("Timeout esperando elemento: " + locator);
+            throw e;
         }
-        return null;
+    }
+
+    public void tapElementBase(By locator) throws InterruptedException {
+        if (locator != null) {
+            waitUntilPresent(locator, 120);
+            find(locator).click();
+        } else {
+            System.out.println("Elemento no reconocido: " + locator);
+        }
     }
 
 
@@ -151,6 +166,8 @@ public abstract class BasePage {
         } catch (TimeoutException e) {
             Logs.error("Timeout esperando visibilidad de: " + locator.toString());
             throw e;
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
         }
     }
 

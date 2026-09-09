@@ -2,6 +2,7 @@ package stepdefinitions;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.WebDriverException;
 import utilities.BasePage;
 
 public class GeneralStep extends BasePage {
@@ -23,7 +24,12 @@ public class GeneralStep extends BasePage {
 
     @And("ocultar teclado")
     public void hideKey() throws InterruptedException {
-        getDriver().hideKeyboard();
-        Thread.sleep(1000);
+        try {
+            if (getDriver().isKeyboardShown()) {
+                getDriver().hideKeyboard();
+            }
+        } catch (WebDriverException e) {
+            System.out.println("No fue posible ocultar el teclado: " + e.getMessage());
+        }
     }
 }

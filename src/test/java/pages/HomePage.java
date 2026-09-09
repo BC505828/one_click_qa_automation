@@ -50,7 +50,7 @@ public class HomePage extends BasePage {
         }
     }
 
-    public void clickElementsHomePage(String element) {
+    public void clickElementsHomePage(String element) throws InterruptedException {
         Map<String, By> elementMap = new HashMap<>();
         elementMap.put("solicitalo aqui", btnSolicitaA);
 
