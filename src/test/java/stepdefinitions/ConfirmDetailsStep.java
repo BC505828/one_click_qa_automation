@@ -27,7 +27,7 @@ public class ConfirmDetailsStep {
     }
 
     @Then("debo visualizar los elementos {} de la pagina captura de informacion paso 1")
-    public void deboVisualizarElementosPaginaCaptura(String element) {
+    public void deboVisualizarElementosPaginaCaptura(String element) throws InterruptedException {
         confirmDetails.validateConfirmDetails(element);
     }
 

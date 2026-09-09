@@ -1,7 +1,7 @@
 Feature: Paso 1 - Ingresar informacion
 
   @ingresacurp
-  Scenario Outline: Test curp
+  Scenario Outline: Validar CURP <curp> invalida en captura de informacion paso 1
     Given ingresar a la pagina One Click
     When dar click en elemento "solicitalo aqui" pagina inicio
     When ingreso <curp> en el campo "CURP" de la pagina ingresar informacion
@@ -10,6 +10,8 @@ Feature: Paso 1 - Ingresar informacion
     And doy clic en el elemento "privacidad" pagina ingresar informacion
     Then debo visualizar los elementos <error> de la pagina captura de informacion paso 1
     Examples:
-      | curp                 | error         |
-      | "234567890946534553" | curp_invalida |
-      #| 234567890946534553 |               |
+      | curp                 | error              |
+      | "234567890946534553" | curp_invalida      |
+      | "CAS990000HDFHVG012" | curp_invalida      |
+      | "9ASB980113XDFHVG09" | curp_invalida      |
+      | "CASB990134HDFHVG09" | curp no localizada |
