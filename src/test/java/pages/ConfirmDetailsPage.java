@@ -12,7 +12,7 @@ public class ConfirmDetailsPage extends BasePage {
 
     private WebDriver driver;
 
-    public ConfirmDetailsPage() {
+    public ConfirmDetailsPage(){
         this.driver = new DriverProvider().get();
     }
 
@@ -33,16 +33,31 @@ public class ConfirmDetailsPage extends BasePage {
     private final By modalerrordedatos = By.cssSelector(".css-1bzztpk");
     private final By btnsalirmodal = By.cssSelector(".MuiButton-fullWidth");
 
-    //paso1confirmatusdatos
+    //Elementos pagina de Identidad
+    private final By txtTituloIdent = By.xpath("//h5[contains(.,'Verifica que seas tú')]");
+    private final By lblNombre = By.cssSelector(".MuiBox-root:nth-child(1) > .css-17jfpkc");
+    private final By lblCurp = By.cssSelector(".MuiBox-root:nth-child(2) > .css-17jfpkc");
+    private final By lblPoliza = By.cssSelector(".MuiBox-root:nth-child(3) > .css-17jfpkc");
+    private final By btnDatosNoCoinciden = By.cssSelector(".css-xbbd4m");
+    private final By btnContinuarIdent = By.cssSelector(".css-l12r2c");
+
+    //paso1confirmatusdatos terminos y condiciones
     private final By txtconfirmatusdatos = By.cssSelector(".css-v44pob");
     private final By lnktyc = By.cssSelector(".css-35he3f");
     private final By txtrevisatuw = By.cssSelector(".css-jdbo4d");
-    private final By btnnemerocel = By.cssSelector(".css-xt636");
+    private final By btnnemerocel = By.cssSelector(".css-xt636");//h5[contains(.,'Verifica que seas tú')]
     private final By txtreenviarcodigo = By.cssSelector(".css-pyazmv");
     private final By temcronometro = By.cssSelector(".css-14gdo48");
     private final By camtxt = By.id(":r9:");
     private final By txtreenviar = By.cssSelector(".MuiButton-text");
     private final By btncontinuartyc = By.cssSelector(".MuiButton-outlined");
+
+    //Elementos pantalla buro de credito otp
+    private final By txtTituloBuro = By.xpath("//h6[contains(.,'Autorización de consulta de buró de crédito')]");
+    private final By txtAreaBuro = By.cssSelector(".css-mmu2dp");
+    private final By inputOTPBuro = By.cssSelector(".css-152ldy7");
+    private final By btnReenviarBuro = By.cssSelector(".MuiButton-text");
+    private final By btnContinuarBuro = By.cssSelector(".MuiButton-outlined");
 
 
     public void clickElementsConfirmPage(String element) throws InterruptedException {
@@ -51,6 +66,9 @@ public class ConfirmDetailsPage extends BasePage {
         elementMap.put("privacidad", btnPrivacidad);
         elementMap.put("continuar", btnContinuar);
         elementMap.put("area", txtAreaCurp);
+        elementMap.put("continuar identidad", btnContinuarIdent);
+        elementMap.put("continuar tyc", btncontinuartyc);
+        elementMap.put("continuar buro", btnContinuarBuro);
 
         By locator = elementMap.get(element);
         tapElementBase(locator);
@@ -67,16 +85,27 @@ public class ConfirmDetailsPage extends BasePage {
                 waitUntilPresent(txtAreaDescripcion, 240);
                 validateVisibility(txtTituloError, imgDescripcion, textNumero, btnRegresar);
                 break;
+            case "identidad":
+                waitUntilPresent(txtTituloIdent, 240);
+                validateVisibility(lblNombre, lblCurp, lblPoliza, btnDatosNoCoinciden, btnContinuarIdent);
+                break;
             case "terminos y condiciones":
                 waitUntilPresent(txtconfirmatusdatos, 240);
-                validateVisibility(lnktyc, txtrevisatuw, btnnemerocel, txtreenviarcodigo, temcronometro, camtxt, txtreenviar, btncontinuartyc);
+                validateVisibility(lnktyc, txtrevisatuw, btnnemerocel, txtreenviarcodigo,temcronometro,
+                        camtxt, txtreenviar, btncontinuartyc);
+                break;
+            case "buro de credito":
+                waitUntilPresent(txtTituloBuro, 240);
+                validateVisibility(txtAreaBuro, inputOTPBuro, btnReenviarBuro, btnContinuarBuro);
                 break;
             default:
-                throw new IllegalArgumentException("Página no reconocida: " + page);
+                throw new IllegalArgumentException(
+                        "Página no reconocida: " + page
+                );
         }
     }
 
-    public void enterTextInElement(String text, String element) {
+    public void enterTextInElement(String text, String element){
         Map<String, By> elementMap = new HashMap<>();
         elementMap.put("CURP", inputCurp);
 
