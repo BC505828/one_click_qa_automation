@@ -28,10 +28,11 @@ Feature: Paso 1 - Ingresar informacion
     And doy clic en el elemento "continuar identidad" pagina ingresar informacion
     Then debo visualizar los elementos "terminos y condiciones" de la pagina captura de informacion paso 1
     #Se ingresa un tiempo para poder ingresar el otp
-    And pausa 20 segundos
+    And pausa 30 segundos
     And doy clic en el elemento "continuar tyc" pagina ingresar informacion
     Then debo visualizar los elementos "buro de credito" de la pagina captura de informacion paso 1
     And doy clic en el elemento "continuar buro" pagina ingresar informacion
+<<<<<<< HEAD
 
 
   Scenario: test
@@ -59,3 +60,8 @@ Feature: Paso 1 - Ingresar informacion
       And doy clic en el elemento "continuar identidad" pagina ingresar informacion
       Then debo visualizar los elementos "modal sin capacidad de pago" de la pagina captura de informacion paso 1
 
+=======
+    And pausa 30 segundos
+    When desplizo el elemento "monto" desde 90 hasta 10
+    And pausa 30 segundos
+>>>>>>> c43f1a9731b96f46004ae1305a9e976f540be569
