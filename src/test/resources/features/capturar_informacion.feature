@@ -15,8 +15,8 @@ Feature: Paso 1 - Ingresar informacion
       | "9ASB980113XDFHVG09" | "curp_invalida"      |
       | "CASB990134HDFHVG09" | "curp no localizada" |
 
-
-  Scenario: test
+    @CP030
+  Scenario: Flujo completo generar préstamo nuevo
     Given ingresar a la pagina One Click
     And dar click en elemento "solicitalo aqui" pagina inicio
     When ingreso "CAGC470430MTSHMT12" en el campo "CURP" de la pagina ingresar informacion
@@ -36,7 +36,8 @@ Feature: Paso 1 - Ingresar informacion
     When desplizo el elemento "monto" desde 90 hasta 10
     And pausa 30 segundos
 
-  Scenario: test
+    @CP720
+  Scenario: Redireccionamiento
     Given ingresar a la pagina One Click
     And dar click en elemento "solicitalo aqui" pagina inicio
     When ingreso "CAGC470430MTSHMT12" en el campo "CURP" de la pagina ingresar informacion
@@ -48,8 +49,8 @@ Feature: Paso 1 - Ingresar informacion
     And doy clic en el elemento "noreconozcomisdatos" pagina ingresar informacion
     Then debo visualizar los elementos "nosonmisdatos" de la pagina captura de informacion paso 1
 
-    @sincapacidad
-    Scenario: sincapacidad
+    @CP040
+    Scenario: Rechazo sin capacidad descuento
       Given ingresar a la pagina One Click
       And dar click en elemento "solicitalo aqui" pagina inicio
       When ingreso "BELM830815HJCJPG06" en el campo "CURP" de la pagina ingresar informacion
