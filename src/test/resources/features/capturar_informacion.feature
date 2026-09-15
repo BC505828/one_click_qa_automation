@@ -15,7 +15,7 @@ Feature: Paso 1 - Ingresar informacion
       | "9ASB980113XDFHVG09" | "curp_invalida"      |
       | "CASB990134HDFHVG09" | "curp no localizada" |
 
-  @ingresacurp
+
   Scenario: test
     Given ingresar a la pagina One Click
     And dar click en elemento "solicitalo aqui" pagina inicio
@@ -32,3 +32,30 @@ Feature: Paso 1 - Ingresar informacion
     And doy clic en el elemento "continuar tyc" pagina ingresar informacion
     Then debo visualizar los elementos "buro de credito" de la pagina captura de informacion paso 1
     And doy clic en el elemento "continuar buro" pagina ingresar informacion
+
+
+  Scenario: test
+    Given ingresar a la pagina One Click
+    And dar click en elemento "solicitalo aqui" pagina inicio
+    When ingreso "CAGC470430MTSHMT12" en el campo "CURP" de la pagina ingresar informacion
+    And ocultar teclado
+    And doy clic en el elemento "area" pagina ingresar informacion
+    And doy clic en el elemento "privacidad" pagina ingresar informacion
+    When doy clic en el elemento "continuar" pagina ingresar informacion
+    Then debo visualizar los elementos "identidad" de la pagina captura de informacion paso 1
+    And doy clic en el elemento "noreconozcomisdatos" pagina ingresar informacion
+    Then debo visualizar los elementos "nosonmisdatos" de la pagina captura de informacion paso 1
+
+    @sincapacidad
+    Scenario: sincapacidad
+      Given ingresar a la pagina One Click
+      And dar click en elemento "solicitalo aqui" pagina inicio
+      When ingreso "BELM830815HJCJPG06" en el campo "CURP" de la pagina ingresar informacion
+      And ocultar teclado
+      And doy clic en el elemento "area" pagina ingresar informacion
+      And doy clic en el elemento "privacidad" pagina ingresar informacion
+      When doy clic en el elemento "continuar" pagina ingresar informacion
+      Then debo visualizar los elementos "identidad" de la pagina captura de informacion paso 1
+      And doy clic en el elemento "continuar identidad" pagina ingresar informacion
+      Then debo visualizar los elementos "modal sin capacidad de pago" de la pagina captura de informacion paso 1
+

@@ -69,10 +69,22 @@ public class ConfirmDetailsPage extends BasePage {
         elementMap.put("continuar identidad", btnContinuarIdent);
         elementMap.put("continuar tyc", btncontinuartyc);
         elementMap.put("continuar buro", btnContinuarBuro);
+        elementMap.put("noreconozcomisdatos", btnDatosNoCoinciden);
 
         By locator = elementMap.get(element);
         tapElementBase(locator);
     }
+
+    //Modal sin capacidad de pago
+
+    private final By logodatoatxtmodal = By.id("modal-modal-title");
+    private final By txtnopuedeproceder= By.xpath("//h6[contains(.,'Te informamos que tu solicitud no puede proceder en esta ocasión, ya que tu pensión cuenta con descuentos aplicados')]");
+    private final By logoalerta = By.cssSelector(".css-d5m7rx img");
+    private final By txtsinecesitasinformacion = By.cssSelector(".css-19vdwje");
+    private final By numllama = By.cssSelector(".css-1icpx5c");
+    private final By txtcodigo = By.cssSelector(".css-3qet76");
+    private final By btnsalirse = By.cssSelector(".MuiButton-fullWidth");
+
 
     public void validateConfirmDetails(String page) throws InterruptedException {
         switch (page) {
@@ -98,6 +110,15 @@ public class ConfirmDetailsPage extends BasePage {
                 waitUntilPresent(txtTituloBuro, 240);
                 validateVisibility(txtAreaBuro, inputOTPBuro, btnReenviarBuro, btnContinuarBuro);
                 break;
+            case "nosonmisdatos":
+                waitUntilPresent(btnmisdatos, 240);
+                validateVisibility(btnmisdatos, modalerrordedatos, btnsalirmodal);
+                break;
+            case "modal sin capacidad de pago":
+                waitUntilPresent(logodatoatxtmodal, 240);
+                validateVisibility(txtnopuedeproceder, logoalerta, txtsinecesitasinformacion, numllama, txtcodigo, btnsalirse);
+                break;
+
             default:
                 throw new IllegalArgumentException(
                         "Página no reconocida: " + page
@@ -105,7 +126,7 @@ public class ConfirmDetailsPage extends BasePage {
         }
     }
 
-    public void enterTextInElement(String text, String element){
+      public void enterTextInElement(String text, String element){
         Map<String, By> elementMap = new HashMap<>();
         elementMap.put("CURP", inputCurp);
 
