@@ -191,14 +191,16 @@ public abstract class BasePage {
         }
     }
 
-    public void scrollUp(Integer alto) {
+    public void scrollUp() {
+        Dimension size = getDriver().manage().window().getSize();
+
         Map<String, Object> params = new HashMap<>();
-        params.put("left", 500);     // coordenada X inicial
-        params.put("top", 500);     // coordenada Y inicial
-        params.put("width", 100);    // ancho del área de swipe
-        params.put("height", alto);   // alto del área de swipe
-        params.put("direction", "up"); // opciones: up, down, left, right
-        params.put("percent", 1.0); // porcentaje de la pantalla a recorrer
+        params.put("left", 0);
+        params.put("top", 0);
+        params.put("width", size.getWidth());
+        params.put("height", size.getHeight());
+        params.put("direction", "up");
+        params.put("percent", 0.8);
 
         getDriver().executeScript("mobile: swipeGesture", params);
     }

@@ -15,7 +15,7 @@ Feature: Paso 1 - Ingresar informacion
       | "9ASB980113XDFHVG09" | "curp_invalida"      |
       | "CASB990134HDFHVG09" | "curp no localizada" |
 
-    @CP030
+    @CP030 @test1
   Scenario: Flujo completo generar préstamo nuevo
     Given ingresar a la pagina One Click
     And dar click en elemento "solicitalo aqui" pagina inicio
@@ -33,8 +33,11 @@ Feature: Paso 1 - Ingresar informacion
     Then debo visualizar los elementos "buro de credito" de la pagina captura de informacion paso 1
     And doy clic en el elemento "continuar buro" pagina ingresar informacion
     And pausa 30 segundos
+    Then debo visualizar los elementos "selecciona el monto" de la pagina selecciona un monto paso 2
     When desplizo el elemento "monto" desde 90 hasta 10
-    And pausa 30 segundos
+    And desplazo hacia abajo
+    When doy clic en el elemento "continuar" pagina selecciona el monto
+
 
     @CP720
   Scenario: Redireccionamiento

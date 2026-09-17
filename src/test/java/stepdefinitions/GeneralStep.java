@@ -17,9 +17,9 @@ public class GeneralStep extends BasePage {
         scrollDown(text);
     }
 
-    @When("Desplazo hacia abajo {int}")
-    public void scrollUpXY(Integer alto) {
-        scrollUp(alto);
+    @When("desplazo hacia abajo")
+    public void scrollUpXY() {
+        scrollUp();
     }
 
     @And("ocultar teclado")
