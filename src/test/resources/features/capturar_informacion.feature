@@ -61,3 +61,13 @@ Feature: Paso 1 - Ingresar informacion
       Then debo visualizar los elementos "identidad" de la pagina captura de informacion paso 1
       And doy clic en el elemento "continuar identidad" pagina ingresar informacion
       Then debo visualizar los elementos "modal sin capacidad de pago" de la pagina captura de informacion paso 1
+
+     @CP610
+     Scenario: Titular de cobro suspendido
+       Given ingresar a la pagina One Click
+       And dar click en elemento "solicitalo aqui" pagina inicio
+       When ingreso "GORJ750529HOCNYS00" en el campo "CURP" de la pagina ingresar informacion
+       And ocultar teclado
+       And doy clic en el elemento "privacidad" pagina ingresar informacion
+       When doy clic en el elemento "continuar" pagina ingresar informacion
+       Then debo visualizar los elementos "modal titular de cobro suspendido" de la pagina captura de informacion paso 1
