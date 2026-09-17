@@ -16,11 +16,31 @@ public class ConfirmDetailsPage extends BasePage {
         this.driver = new DriverProvider().get();
     }
 
+    //Modal sin capacidad de pago
+
+    private final By logodatoatxtmodal = By.id("modal-modal-title");
+    private final By txtnopuedeproceder= By.xpath("//h6[contains(.,'Te informamos que tu solicitud no puede proceder en esta ocasión, ya que tu pensión cuenta con descuentos aplicados')]");
+    private final By logoalerta = By.cssSelector(".css-d5m7rx img");
+    private final By txtsinecesitasinformacion = By.cssSelector(".css-19vdwje");
+    private final By numllama = By.cssSelector(".css-1icpx5c");
+    private final By txtcodigo = By.cssSelector(".css-3qet76");
+    private final By btnsalirse = By.cssSelector(".MuiButton-fullWidth");
+
+
     private final By inputCurp = By.id("curp");
     private final By btnPrivacidad = By.name("avisoPrivacidad");
     private final By txtAreaCurp = By.cssSelector(".MuiGrid2-root:nth-child(3)");
     private final By btnContinuar = By.cssSelector(".MuiButton-root");
     private final By lblMensajeError = By.xpath("//p[contains(.,'La CURP que ingresaste no es válida, favor de volver a intentar')]");
+
+    //Titular de cobro suspendido
+    private final By txtLosentimos = By.cssSelector("#modal-modal-title");
+    private final By txtsuspendido = By.xpath("//h6[contains(.,'Te informamos que tu solicitud no puede proceder en esta ocasión, " +
+            "ya que el titular de cobro se encuentra suspendido')]");
+    private final By txtcomunicateal = By.cssSelector(".css-19vdwje");
+    private final By txtNumerotel = By.cssSelector(".css-1icpx5c");
+    private final By txtcodigo007 = By.cssSelector(".css-3qet76");
+    private final By btnsal = By.cssSelector(".MuiButton-fullWidth");
 
     //Modal de error
     private final By txtTituloError = By.xpath("//h5[contains(.,'No encontramos tu CURP')]");
@@ -75,15 +95,7 @@ public class ConfirmDetailsPage extends BasePage {
         tapElementBase(locator);
     }
 
-    //Modal sin capacidad de pago
 
-    private final By logodatoatxtmodal = By.id("modal-modal-title");
-    private final By txtnopuedeproceder= By.xpath("//h6[contains(.,'Te informamos que tu solicitud no puede proceder en esta ocasión, ya que tu pensión cuenta con descuentos aplicados')]");
-    private final By logoalerta = By.cssSelector(".css-d5m7rx img");
-    private final By txtsinecesitasinformacion = By.cssSelector(".css-19vdwje");
-    private final By numllama = By.cssSelector(".css-1icpx5c");
-    private final By txtcodigo = By.cssSelector(".css-3qet76");
-    private final By btnsalirse = By.cssSelector(".MuiButton-fullWidth");
 
 
     public void validateConfirmDetails(String page) throws InterruptedException {
@@ -117,6 +129,10 @@ public class ConfirmDetailsPage extends BasePage {
             case "modal sin capacidad de pago":
                 waitUntilPresent(logodatoatxtmodal, 240);
                 validateVisibility(txtnopuedeproceder, logoalerta, txtsinecesitasinformacion, numllama, txtcodigo, btnsalirse);
+                break;
+            case "modal titular de cobro suspendido":
+                waitUntilPresent(txtLosentimos, 240);
+                validateVisibility(txtsuspendido, txtcomunicateal, txtNumerotel, txtcodigo007, btnsal);
                 break;
 
             default:
